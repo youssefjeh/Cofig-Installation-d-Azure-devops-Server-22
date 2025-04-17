@@ -2,20 +2,34 @@
 
 Ce projet documente l’installation et la configuration complète d’un serveur **Azure DevOps Server 2022** sur l’environnement **WIN_AD_SERVER**. Il comprend les paramétrages avancés, l'intégration avec SQL Server, la configuration d’IIS et les considérations de sécurité.
 
-## 🧩 Sommaire
-
-1. [Introduction](#introduction)
-2. [Assistant de Configuration](#assistant-de-configuration)
-3. [Choix de la Configuration](#choix-de-la-configuration)
-4. [Langue d’Installation](#langue-dinstallation)
-5. [Configuration SQL Server](#configuration-sql-server)
-6. [Compte de Service](#compte-de-service)
-7. [Application Tier](#application-tier)
-8. [Composant de Recherche](#composant-de-recherche)
-9. [Project Collection](#project-collection)
-10. [Vérification & Validation](#vérification--validation)
-11. [Configuration IIS](#configuration-iis)
-12. [Accès au Serveur](#accès-au-serveur)
+                    🔐 User (internes / externes)
+                             |
+                             | (HTTP / HTTPS)
+                             v
+                  🌐 Serveur IIS (WIN_AD_SERVER – Azure DevOps Server)
+                ┌────────────────────────────────────────────┐
+                │   - Windows Authentication activée         │
+                │   - Certificat SSL (CA__ENT)              │
+                │   - Site déplacé vers disque E:\           │
+                │   - Ports : 80 / 443 / 22 (SSH)            │
+                └────────────────────────────────────────────┘
+                             |
+                             | (SQL Queries)
+                             v
+                  🗄️ SQL Server (SQL_AD_SERVER – Instance dédiée)
+                ┌────────────────────────────────────────────┐
+                │   - Base de données Azure DevOps           │
+                │   - Full-Text Search installé              │
+                │   - Rôle sysadmin pour le compte de service│
+                └────────────────────────────────────────────┘
+                             |
+                             | (Fichier Cache, Logs)
+                             v
+                    💾 Stockage local sur WIN_AD_SERVER
+                ┌────────────────────────────────────────────┐
+                │   - E:\zureDevOpsServerData\               │
+                │   - _fileCache                              │
+                └────────────────────────────────────────────┘
 
 ---
 
