@@ -1,6 +1,6 @@
-# ⚙️ Configuration Azure DevOps Server 2022 – Serveur WIN_AZ_DEVOPS
+# ⚙️ Configuration Azure DevOps Server 2022 – WIN_AD_SERVER
 
-Ce projet documente l’installation et la configuration complète d’un serveur **Azure DevOps Server 2022** sur l’environnement **WIN_AZ_DEVOPS**. Il comprend les paramétrages avancés, l'intégration avec SQL Server, la configuration d’IIS et les considérations de sécurité.
+Ce projet documente l’installation et la configuration complète d’un serveur **Azure DevOps Server 2022** sur l’environnement **WIN_AD_SERVER**. Il comprend les paramétrages avancés, l'intégration avec SQL Server, la configuration d’IIS et les considérations de sécurité.
 
 ## 🧩 Sommaire
 
@@ -21,7 +21,7 @@ Ce projet documente l’installation et la configuration complète d’un serveu
 
 ## 📘 Introduction
 
-Ce guide couvre l’installation d’Azure DevOps Server 2022 sur **WIN_AZ_DEVOPS**, avec configuration personnalisée (mode avancé), sécurité renforcée, et optimisation des services.
+Ce guide couvre l’installation d’Azure DevOps Server 2022 sur **WIN_AD_SERVER**, avec configuration personnalisée (mode avancé), sécurité renforcée, et optimisation des services.
 
 ---
 
@@ -55,11 +55,13 @@ Permet de :
 
 - Serveur SQL : `SQL_AD_SERVER`
 - Compte de service avec :
-  - 🔐 Droits administrateur local sur **WIN_AZ_DEVOPS**
+  - 🔐 Droits administrateur local sur **WIN_AD_SERVER**
   - 🎯 Rôle `sysadmin` sur SQL Server
 
 ➡️ Problème résolu : accès SQL insuffisant, corrigé via les bons privilèges.
 
+
+` TF255062: Failed to reach SQL instance. Verify that you have entered the correct name for the server and SQL instance, that the server and SQL instance are online, and that you have the required permissions. If the SQL instance is not on this computer, verify that it is configured to allow remote connections, that the TCP/IP protocol is enabled and configured, and that port 1433 is not blocked by Windows Firewall rules.`
 
 ---
 
@@ -72,7 +74,7 @@ Permet de :
 ## 🌍 Application Tier
 
 - Protocoles : HTTP & HTTPS
-- Certificat SSL : généré via **CA MASSA**
+- Certificat SSL : généré via **CA_ENT**
 - SSH : Port `22`
 - Cache fichiers : `E:\zureDevOpsServerData\ApplicationTier\_fileCache`
 
@@ -83,6 +85,10 @@ Permet de :
 - **Search** désactivé via l’assistant
 - ✅ **Full-Text Search** installé manuellement (obligatoire)
 - 📌 Erreur évitée : `F255149` (absence de Full-Text Search)
+
+`F255149: The following server that is running SQL Server does not have the 
+full-text search feature installed: KARCEL. This feature is required for 
+Azure DevOps Server to operate correctly.`
 
 ---
 
@@ -110,7 +116,7 @@ Permet de :
 
 ## 🚀 Accès au Serveur
 
-- Accès local : [https://WIN_AZ_DEVOPS.DN_ENT.com](https://WIN_AZ_DEVOPS.DN_ENT.com)
+- Accès local : [https://WIN_AD_SERVER.DN_ENT.com](https://WIN_AD_SERVER.DN_ENT.com)
 - Accès externe : en attente de validation par l’équipe sécurité
 
 ---
